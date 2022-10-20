@@ -20,9 +20,9 @@ def extract_lung_nodule_from_center(dicom_path, x, y):
     # crop_img = imgarray[Ycenter-32:Ycenter+32, Xcenter-32:Xcenter+32] # 64*64
     crop_img = imgarray[Ycenter-16:Ycenter+16, Xcenter-16:Xcenter+16]  # 32*32
 
-    return crop_img
 
-def extract_lung_nodule_by_boundingbox(dicom_path, x, y):
+
+def extract_lung_nodule_by_boundingbox(dicom_path, x1, y1, x2, y2):
     
     # read dicom image
     ds = pydicom.dcmread(dicom_path)
@@ -35,7 +35,7 @@ def extract_lung_nodule_by_boundingbox(dicom_path, x, y):
     
     crop_img = imgarray[x1:x2, y2:y1] 
     
-    return crop_img
+
     
 
 if __name__ == '__main__':
