@@ -1,7 +1,7 @@
 # -- coding: utf-8 --
 '''
 @Time : 07/03/2022 16:46
-@Author : "Jingxuan Wang"
+@Author : "wxlearncoding"
 '''
 
 import pydicom
@@ -15,11 +15,9 @@ def extract_lung_nodule_from_center(dicom_path, x, y):
     Xcenter = int(x)
     Ycenter = int(y)
 
-    # extraction(crop)
-    # [starting row:ending row, starting column:ending column]
-    # crop_img = imgarray[Ycenter-32:Ycenter+32, Xcenter-32:Xcenter+32] # 64*64
-    crop_img = imgarray[Ycenter-16:Ycenter+16, Xcenter-16:Xcenter+16]  # 32*32
-
+    # extraction
+    radius = 32  # For a diameter of 64 pixels
+    crop_img = imgarray[Ycenter-radius:Ycenter+radius, Xcenter-radius:Xcenter+radius] 
 
 
 def extract_lung_nodule_by_boundingbox(dicom_path, x1, y1, x2, y2):
@@ -37,8 +35,11 @@ def extract_lung_nodule_by_boundingbox(dicom_path, x1, y1, x2, y2):
     
 
     
-
 if __name__ == '__main__':
+    
+    '''
+    There are two methods for extraction, one is extract_lung_nodule_from_center, the other one is extract_lung_nodule_by_boundingbox
+    '''
 
     dicom_path = "..." # your dicom path
 
@@ -46,6 +47,8 @@ if __name__ == '__main__':
     y = "..." # the value of lung nodule center on y-axis
 
     extract_lung_nodule_from_center(dicom_path, x, y)
+    
+    print("Extract lung nodule successfully!")
     
     # lung nodule boundingbox[(x1,y1),(x1,y2),(x2,y2),(x2,y1)]
     
@@ -63,4 +66,6 @@ if __name__ == '__main__':
     
     extract_lung_nodule_by_boundingbox(dicom_path, x1, y1, x2, y2)
     
-
+    print("Extract lung nodule successfully!")
+    
+    
