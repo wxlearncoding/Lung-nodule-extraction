@@ -16,7 +16,7 @@ def extract_lung_nodule_from_center(dicom_path, x, y):
     Ycenter = int(y)
 
     # extraction
-    radius = 32  # For a diameter of 64 pixels
+    radius = 32  # just an example, for a diameter of 64 pixels
     crop_img = imgarray[Ycenter-radius:Ycenter+radius, Xcenter-radius:Xcenter+radius] 
 
 
